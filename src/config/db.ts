@@ -4,7 +4,10 @@ import dotenv from "dotenv";
 dotenv.config();
 const { Pool } = pg;
 
-const config = { connectionString: process.env.DATABASE_URL };
+const config = {
+    connectionString: process.env.MODE === "DEV" ?
+        process.env.LOCAL_DATABASE : process.env.DATABASE_URL
+};
 
 if (process.env.MODE === "PROD") {
     // @ts-ignore FIXME !
