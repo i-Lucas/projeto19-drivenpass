@@ -2,15 +2,15 @@
   "name": "projeto19-drivenpass",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "build": "npx src/index.ts",
+    "build": "tsc",
     "start": "node dist/index.js",
     "dev": "nodemon src/index.ts"
   },
   "keywords": [],
-  "author": "",
+  "author": "Lucas Emmanuel",
   "license": "ISC",
   "devDependencies": {
     "@types/cors": "^2.8.12",
