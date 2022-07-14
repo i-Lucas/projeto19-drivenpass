@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import TokenSystem from 'ts-tk-generator';
+import jwt from 'jsonwebtoken';
 
 import userRepository from '../repositories/user.js';
 import sessionsService from './sessions.js';
@@ -24,13 +24,14 @@ async function signin(email: string, password: string) {
     if (!user || !bcrypt.compareSync(password, user.password))
         throw { status: 401, message: 'Invalid credentials' };
 
-    const token = TokenSystem.TokenGenerator({
+    const token = jwt.sign({
         userId: user.id,
         email: user.email,
         loggedAt: timeUtils.formatedTime()
-    });
+    }, 'teste');
 
     const session = await sessionsService.findByUserId(user.id);
+    const token_expiration_minutes = 30;
 
     if (!session) {
 
@@ -43,11 +44,12 @@ async function signin(email: string, password: string) {
         await sessionsService.update(session.id, {
             token,
             userId: user.id,
-            expiration: timeUtils.tokenExpiration(30),
+            expiration: timeUtils.tokenExpiration(token_expiration_minutes),
             updatedAt: timeUtils.formatedTime()
         });
     }
 
+    //console.log(jwt.decode(token));
     return { token };
 };
 
