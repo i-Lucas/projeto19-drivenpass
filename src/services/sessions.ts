@@ -29,11 +29,16 @@ async function findByUserId(userId: number) {
     return await sessionRepo.findByUserId(userId);
 };
 
+async function getUserByToken(token: string) {
+    return await sessionRepo.findByToken(token);
+};
+
 const sessionsService = {
     validate,
     create,
     findByUserId,
-    update
+    update,
+    getUserByToken
 };
 
 export default sessionsService;

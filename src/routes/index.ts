@@ -1,13 +1,10 @@
 import { Router } from 'express';
 import authenticationRoutes from './authentication.js';
-import tokenValidate from '../middlewares/token.js';
+import credentialsRoutes from './credentials.js';
 
 const appRouter = Router();
+
 appRouter.use(authenticationRoutes);
-
-appRouter.post('/test', tokenValidate, (req, res) => {
-
-    res.sendStatus(200);
-});
+appRouter.use(credentialsRoutes);
 
 export default appRouter;

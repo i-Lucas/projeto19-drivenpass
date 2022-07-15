@@ -31,7 +31,7 @@ async function signin(email: string, password: string) {
     }, 'teste');
 
     const session = await sessionsService.findByUserId(user.id);
-    const token_expiration_minutes = 30;
+    const token_expiration_minutes = 60;
 
     if (!session) {
 
