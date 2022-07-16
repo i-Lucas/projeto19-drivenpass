@@ -1,13 +1,10 @@
 import { Router } from 'express';
 
-import tokenValidate from '../middlewares/token.js';
 import controllers from '../controllers/notes.js';
 import { validateSchema } from '../middlewares/schema.js';
 import schema from '../schemas/notes.js';
 
 const notesRouter = Router();
-
-notesRouter.use(tokenValidate);
 
 notesRouter.post('/create/notes', validateSchema(schema.create), controllers.create); // Create new note
 notesRouter.get('/list/notes', controllers.list); // list all notes

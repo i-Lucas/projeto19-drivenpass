@@ -26,6 +26,7 @@ model users {
     credentials credentials[]
     notes       notes[]
     cards       cards[]
+    wifi        wifi[]
 }
 
 model sessions {
@@ -81,4 +82,17 @@ model cards {
     virtual    Boolean
     updatedAt  String
     createdAt  DateTime @default(now())
+}
+
+model wifi {
+
+    id     Int   @id @default(autoincrement())
+    user   users @relation(fields: [userId], references: [id])
+    userId Int
+
+    title     String
+    network   String
+    password  String
+    updatedAt String
+    createdAt DateTime @default(now())
 }
