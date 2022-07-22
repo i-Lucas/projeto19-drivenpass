@@ -11,7 +11,6 @@ function formatedTime(locale: string = 'pt-br'): string {
 };
 
 function tokenExpiration(minutes: number): bigint {
-    console.log(`Token expiration: ${minutes} minutes ${Date.now() + minutes * 60000}`);
     return BigInt(Date.now() + minutes * 60000);
 };
 

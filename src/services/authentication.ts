@@ -35,12 +35,12 @@ async function signin(email: string, password: string) {
 
     if (!session) {
 
-        console.log('new session created');
+        //console.log('new session created');
         await sessionsService.create(user.id, token);
 
     } else {
 
-        console.log('session updated');
+        //console.log('session updated');
         await sessionsService.update(session.id, {
             token,
             userId: user.id,

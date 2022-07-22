@@ -9,5 +9,6 @@ export default async function tokenValidate(req: Request, res: Response, next: N
     if (!token) throw { status: 401, message: 'No token provided' };
     await sessionsService.validate(token);
 
+    res.locals.token = token;
     next();
 };
